@@ -22,7 +22,8 @@ class GitHubService implements ServiceContract
         public readonly int $timeout,
         public readonly null|int $retryTimes = null,
         public readonly null|int $retrySleep = null,
-    ) {}
+    ) {
+    }
 
     public function makeRequest(): PendingRequest
     {
@@ -35,7 +36,7 @@ class GitHubService implements ServiceContract
         if (! is_null($this->retryTimes) && ! is_null($this->retrySleep)) {
             $request->retry(
                 times: $this->retryTimes,
-                sleep: $this->retrySleep,
+                sleepMilliseconds: $this->retrySleep,
             );
         }
 
